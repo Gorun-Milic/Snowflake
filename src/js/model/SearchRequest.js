@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default class SearchRequest {
 
     API_KEY = '8217b56d767b6ba420281b7b6db7cfc0';
@@ -26,6 +24,9 @@ export default class SearchRequest {
                     "lon": longitude
                 }
                 resolve(response);
+            },
+            (error)=>{
+                alert("Enable location or type a city name!");
             }
         );
     }
@@ -35,8 +36,6 @@ export default class SearchRequest {
         try {
             const result = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${1}&appid=${this.API_KEY}`);
             const res = await result.json();
-            // const res = result.data[0];
-            // console.log(result.data[0]);
             return res;
         }catch(error) {
             alert(error);

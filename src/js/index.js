@@ -32,7 +32,6 @@ async function init() {
         searchRequest.getCurrentLocation(resolve, reject);
     });
 
-
     const coordinates = await currentLocation;
     const weatherData = await searchRequest.getWeatherData(coordinates.lat, coordinates.lon);
     const nearestCity = await searchRequest.getNearestCity(coordinates.lat, coordinates.lon);
