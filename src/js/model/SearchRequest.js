@@ -33,13 +33,9 @@ export default class SearchRequest {
 
     //vraca kordinate na osnovu naziva grada
     async getCordinates(city) {
-        try {
-            const result = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${1}&appid=${this.API_KEY}`);
-            const res = await result.json();
-            return res;
-        }catch(error) {
-            alert(error);
-        }
+        const result = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${1}&appid=${this.API_KEY}`);
+        const res = await result.json();
+        return res;
     };
 
     //vraca naziv grada na osnovu lat i lon
