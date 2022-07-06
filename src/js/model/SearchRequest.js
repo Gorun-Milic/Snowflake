@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default class SearchRequest {
 
     API_KEY = '8217b56d767b6ba420281b7b6db7cfc0';
@@ -26,15 +24,22 @@ export default class SearchRequest {
                     "lon": longitude
                 }
                 resolve(response);
+            },
+            (error)=>{
+                alert("Enable location or type a city name!");
             }
         );
     }
 
     //vraca kordinate na osnovu naziva grada
     async getCordinates(city) {
-        const result = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${1}&appid=${this.API_KEY}`);
-        const data = await result.json();
-        return data;
+        try {
+            const result = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${1}&appid=${this.API_KEY}`);
+            const res = await result.json();
+            return res;
+        }catch(error) {
+            alert(error);
+        }
     };
 
     //vraca naziv grada na osnovu lat i lon

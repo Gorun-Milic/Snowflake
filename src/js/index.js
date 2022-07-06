@@ -32,7 +32,6 @@ async function init() {
         searchRequest.getCurrentLocation(resolve, reject);
     });
 
-
     const coordinates = await currentLocation;
     const weatherData = await searchRequest.getWeatherData(coordinates.lat, coordinates.lon);
     const nearestCity = await searchRequest.getNearestCity(coordinates.lat, coordinates.lon);
@@ -87,25 +86,31 @@ elements.searchForm.addEventListener('submit', async e => {
     loadSpinner();
     let seachedCity = getInput();
     let data = await searchRequest.getCordinates(seachedCity);
-    let {lat, lon} = data[0];
-    let coordinates = {
-        "lat": lat,
-        "lon": lon
+    if (data.length===0) {
+        alert("City does not exists. Try typing another place.");
+        clearContent();
+        renderContent(chosenDay);
+    }else {
+        let {lat, lon} = data[0];
+        let coordinates = {
+            "lat": lat,
+            "lon": lon
+        }
+
+        const weatherData = await searchRequest.getWeatherData(lat, lon);
+        let nearestCity = await searchRequest.getNearestCity(lat, lon);
+
+        if (nearestCity.includes('Municipality')) {
+            nearestCity = seachedCity;
+        }
+
+        extractCurrentDay(weatherData, nearestCity, coordinates);
+
+        clearContent();
+        renderContent(chosenDay);
+        renderAllDays();
+        clearInput();
     }
-
-    const weatherData = await searchRequest.getWeatherData(lat, lon);
-    let nearestCity = await searchRequest.getNearestCity(lat, lon);
-
-    if (nearestCity.includes('Municipality')) {
-        nearestCity = seachedCity;
-    }
-
-    extractCurrentDay(weatherData, nearestCity, coordinates);
-
-    clearContent();
-    renderContent(chosenDay);
-    renderAllDays();
-    clearInput();
 });
 
 elements.sideBar.addEventListener("click", (e)=>{
