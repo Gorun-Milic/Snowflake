@@ -2,6 +2,8 @@ body {
     font-family: 'Nexa', 'Poppins';
     margin: 0;
     background-image: linear-gradient(to right, rgb(189, 253, 95) , rgb(29, 175, 80));
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -183,7 +185,6 @@ body {
 
 
 .city {
-    /* background-color: #2a942f; */
     font-size: 3rem;
     grid-column: 1 / 2;
     grid-row: 1 / 2;
@@ -251,6 +252,142 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+/* Large devices (laptops/desktops, 1200px and up) */
+@media only screen and (max-width: 1400px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1200px) {
+    body {
+        background-image: linear-gradient(to right, rgb(45, 200, 195) , rgb(29, 95, 175));
+    }
+}
+
+/* Medium devices (landscape tablets, 460px and up) */
+@media only screen and (max-width: 992px) {
+
+    body {
+        padding: 0rem 5rem;
+        background-image: linear-gradient(to right, rgb(189, 253, 95) , rgb(29, 175, 80));
+    }
+
+    .container {
+        width: 100%;
+        grid-template-columns: [column-1-start] 100% [column-1-end];
+        grid-template-rows: [row-1-start] auto [row-1-end row-2-start] auto [row-2-end row-3-start] auto [row-3-end row-4-start] auto [row-4-end];
+    }
+
+    /* Header */
+
+    .header {
+        grid-column: column-1-start / column-1-end;
+        grid-row: row-1-start / row-1-end;
+    }
+
+    .search-btn {
+        height: 2.6rem;
+        width: 2.6rem;
+        border-radius: 50%;
+        padding: 0rem;
+    }
+
+    .btn-icon > img {
+        width: 16px;
+    }
+
+    .btn-text {
+        display: none;
+    }
+
+    /* Content */
+
+    .content {
+        grid-column: column-1-start / column-1-end;
+        grid-row: row-2-start / row-2-end;
+
+        grid-template-columns: 14% 86%;
+        grid-template-rows: 4rem 2rem 10rem 5rem 4rem;
+    }
+
+    .city {
+        font-size: 3rem;
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+    
+    .city > .city-name {
+        font-size: 3rem;
+    }
+    
+    .date {
+        font-size: 1rem;
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .temperature {
+        font-size: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        grid-column: 1 / 3;
+        grid-row: 3 / 4;
+    }
+    
+    .weather-img {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+    }
+
+    .weather-img > img {
+        width: 70px;
+    }
+    
+    .weather-description {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        grid-column: 2 / 3;
+        grid-row: 4 / 5;
+    }
+    
+    .weather-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        grid-column: 1 / 3;
+        grid-row: 5 / span 1;
+    }
+
+    /* Side Bar */
+
+    .side-bar {
+        grid-column: column-1-start / column-1-end;
+        grid-row: row-3-start / row-3-end;
+    }
+
+    /* Footer */
+
+    .footer {
+        padding: 2rem 5rem;
+        grid-column: column-1-start / column-1-end;
+        grid-row: row-4-start / row-4-end;
+    }
+}
+
+/* Medium devices (landscape tablets, 460px and down) */
+@media only screen and (max-width: 740px) {
+    body {
+        background-image: linear-gradient(to right, rgb(200, 187, 45) , rgb(175, 66, 29));
+    }
 }
 
 
